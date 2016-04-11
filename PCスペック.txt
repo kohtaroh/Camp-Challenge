@@ -1,0 +1,5 @@
+OS microsoft windows 10 home
+システムモデル k53sd
+RAM 8.00GB
+CPU 2.50GHz
+HDD 240GB
