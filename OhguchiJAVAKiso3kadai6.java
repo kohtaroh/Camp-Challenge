@@ -16,41 +16,61 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kotaroh
  */
-public class OhguchiJAVAKiso3kadai2 extends HttpServlet {
+public class OhguchiJAVAKiso3kadai6 extends HttpServlet {
 
-     String handan(int n){
-     if(n%2==0){   
-     return "その値は偶数です";
-     }else{
-     return "その値は奇数です";
-     }}
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
      * @param request servlet request
      * @param response servlet response
+     * @return 
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+public static String[] data(String n){
+String Mydata[]=new String[3];
+if(n.equals("0")){
+Mydata[0]="名前は大野光";
+Mydata[1]="誕生日は8月";
+Mydata[2]="住所は栃木県";
+return Mydata;
+}else if(n.equals("1")){
+Mydata[0]="名前は大口光太郎";
+Mydata[1]="誕生日は6月27日";
+Mydata[2]="住所は埼玉県";
+return Mydata;
+}else if(n.equals("2")){
+Mydata[0]="名前はO";
+Mydata[1]="誕生日は27";
+Mydata[2]="住所はS";
+return Mydata;
+}else{
+Mydata[0]="エ";
+Mydata[1]="ラ";
+Mydata[2]="ー";
+return Mydata;}}
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         try {
+            String n ="1";
+            String data[]=data(n);
+            out.println(data[0]);
+            out.println(data[1]);
+            out.println(data[2]);
             /* TODO output your page here. You may use following sample code. */
-            int n=8;
-            String answer=handan(n);
-            out.println(answer);
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet OhguchiJAVAKiso3kadai2</title>");            
+            out.println("<title>Servlet OhguchiJAVAKiso3kadai6</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OhguchiJAVAKiso3kadai2 at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OhguchiJAVAKiso3kadai6 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {

@@ -27,9 +27,17 @@ public class OhguchiJAVAKiso3kadai1 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    String getMyName() {
-    return "大口光太郎<br>1993年6月27日<br>ユニヴァース!!";
+
+    String getMyData(String name,PrintWriter out) {
+    return getMyData("大口光太郎","1993年6月27日",out);
     }
+    String getMyData(String name,String birth,PrintWriter out) {
+    return getMyData(name,birth,"ユニヴァース!!",out);
+    }
+    String getMyData(String name,String birth,String comments,PrintWriter out) {
+    out.println(name+"<br>"+birth+"<br>"+comments+"<br>");
+    return null;}
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,10 +45,9 @@ public class OhguchiJAVAKiso3kadai1 extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            String name = getMyName();
-             for(int n=0;n<10;n++){
-                  out.print(name+"<br>");
-                   }
+            for(int n=0;n<10;n++){
+            getMyData("",out);
+            }
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
