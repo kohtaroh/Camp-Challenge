@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai1</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai2</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai3</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai4</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai5</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai5</servlet-class>
+    </servlet>    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai6</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai6</servlet-class>
+    </servlet>    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai7</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai7</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OhguchiJAVAKiso3kadai8</servlet-name>
+        <servlet-class>org.mypackage.sample.OhguchiJAVAKiso3kadai8</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai1</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai2</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai3</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai4</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai5</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai6</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai6</url-pattern>
+    </servlet-mapping>    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai7</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai7</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OhguchiJAVAKiso3kadai8</servlet-name>
+        <url-pattern>/OhguchiJAVAKiso3kadai8</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
