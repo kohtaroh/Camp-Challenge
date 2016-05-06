@@ -11,12 +11,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
+import java.util.Date;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author kotaroh
  */
-public class OhguchiJAVAKiso3kadai4 extends HttpServlet {
+public class DBsousa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,42 +30,36 @@ public class OhguchiJAVAKiso3kadai4 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    String getMyData(String name,PrintWriter out) {
-    return getMyData("大口光太郎","1993年6月27日",out);
-    }
-    String getMyData(String name,String birth,PrintWriter out) {
-    return getMyData(name,birth,"ユニヴァース!!",out);
-    }
-    String getMyData(String name,String birth,String comments,PrintWriter out) {
-    out.println(name+"<br>"+birth+"<br>"+comments+"<br>");
-    return null;}
-    
-    Boolean judge(){
-    return true;}
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
-        try {
+        
+    request.setCharacterEncoding("UTF-8");
+    String Name = request.getParameter("txtName");
+    String Sex = request.getParameter("rdoSex");
+    String Fun = request.getParameter("txtFun");
+    
+    Date time = new Date();
+    Cookie c = new Cookie("LastLogin", time.toString());
+    response.addCookie(c);
+    Cookie cs[] = request.getCookies();
+    if (cs != null) {
+        for (int i=0; i<cs.length; i++) {
+            if (cs[i].getName().equals("LastLogin")) {
+                out.print("最後のログインは、"+cs[i].getValue()+"<br>");
+                break;}}}
+
+    HttpSession hs = request.getSession(true);
+    hs.setAttribute("LastLogin", time.toString());
+    hs = request.getSession(true);
+    out.print("最後のログインは、"+hs.getAttribute("LastLogin")+"<br>");
+
+    try {
             /* TODO output your page here. You may use following sample code. */
-            for(int n=0;n<10;n++){
-            getMyData("",out);
-            boolean type = judge();
-            if(type){
-               out.println("この処理は正しく実行できました<br>");
-            }else{
-               out.println("正しく実行できませんでした<br>");}}
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet OhguchiJAVAKiso3kadai</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet OhguchiJAVAKiso3kadai at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("名前は"+Name+"<br>");
+            out.println("性別は"+Sex+"<br>");
+            out.println("趣味は"+Fun+"<br>");
         } finally {
             out.close();
         }

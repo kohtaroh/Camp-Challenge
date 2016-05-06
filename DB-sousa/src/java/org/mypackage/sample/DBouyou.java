@@ -11,19 +11,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author kotaroh
  */
-public class OhguchiJAVAKiso3kadai2 extends HttpServlet {
-
-     String handan(int n){
-     if(n%2==0){   
-     return "その値は偶数です";
-     }else{
-     return "その値は奇数です";
-     }}
+public class DBouyou extends HttpServlet {
+    
+    
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +34,24 @@ public class OhguchiJAVAKiso3kadai2 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        
+    request.setCharacterEncoding("UTF-8");
+    String Name = request.getParameter("txtName");
+    String Sex = request.getParameter("rdoSex");
+    String Fun = request.getParameter("txtFun");
+    
+    HttpSession ouyou = request.getSession(true);
+    out.println("前回入力された名前は"+ouyou.getAttribute("名前")+"<br>");
+    out.println("前回入力された性別は"+ouyou.getAttribute("性別")+"<br>");
+    out.println("前回入力された趣味は"+ouyou.getAttribute("趣味")+"<br>");
+    ouyou.setAttribute("名前", Name);
+    ouyou.setAttribute("性別", Sex);
+    ouyou.setAttribute("趣味", Fun);
+    out.println("名前は"+Name+"<br>");
+    out.println("性別は"+Sex+"<br>");
+    out.println("趣味は"+Fun+"<br>");
         try {
             /* TODO output your page here. You may use following sample code. */
-            int n=8;
-            String answer=handan(n);
-            out.println(answer);
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet OhguchiJAVAKiso3kadai2</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet OhguchiJAVAKiso3kadai2 at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         } finally {
             out.close();
         }
