@@ -1,0 +1,4 @@
+create table JavaToDBouyouUser(userID int not null primary key,username varchar(255),password varchar(255));
+
+create table JavaToDBouyouItem(itemID int not null primary key,itemName varchar(255),itemGenre varchar(255),itemPrice int,itemCost int);
+

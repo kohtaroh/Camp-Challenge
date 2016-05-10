@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>JavaToDBouyouResults</servlet-name>
+        <servlet-class>org.mypackage.sample.JavaToDBouyouResults</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>応用課題用デーダベース作成</servlet-name>
+        <servlet-class>org.mypackage.sample.応用課題用データベース初期化</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JavaToDBouyouDataGet</servlet-name>
+        <servlet-class>org.mypackage.sample.JavaToDBouyouDataGet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JavaToDBouyouLoginHandan</servlet-name>
+        <servlet-class>org.mypackage.sample.JavaToDBouyouLoginHandan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JavaToDBouyouResults</servlet-name>
+        <url-pattern>/JavaToDBouyouResults</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>応用課題用デーダベース作成</servlet-name>
+        <url-pattern>/_____________</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JavaToDBouyouDataGet</servlet-name>
+        <url-pattern>/JavaToDBouyouDataGet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JavaToDBouyouLoginHandan</servlet-name>
+        <url-pattern>/JavaToDBouyouLoginHandan</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
