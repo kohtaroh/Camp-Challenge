@@ -91,7 +91,11 @@ public class BlackJack extends HttpServlet {
             {
             out.print("Userの勝ち！");
             }
-            else if(Do==Uo)
+            else if(Do>21&&Uo>21)
+            {
+            out.print("Userの勝ち！");
+            }
+            else if(Do==Uo&&Do<=21&&Uo<=21)
             {
             out.print("Dealerの勝ち！");
             }
