@@ -1,4 +1,6 @@
 <%@page import="javax.servlet.http.HttpSession" %>
+<%@page import="jums.JumsHelper" %>
+
 <%
     HttpSession hs = request.getSession();
 %>
@@ -17,5 +19,13 @@
         電話番号:<%= hs.getAttribute("tell")%><br>
         自己紹介:<%= hs.getAttribute("comment")%><br>
         以上の内容で登録しました。<br>
+        
+        <br><br><%=JumsHelper.getInstance().home()%>
+        <%
+//課題1修正箇所
+//JumsHelper()のhome()の戻り値を使用するURLに変更したため
+//それを呼び出すだけでいい
+        %>
+
     </body>
 </html>

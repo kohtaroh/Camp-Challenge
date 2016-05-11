@@ -15,6 +15,7 @@ public class JumsHelper {
     
     //トップへのリンクを返却
     public String home(){
-        return "<a href=\""+homeURL+"\">トップへ戻る</a>";
+        return "<A Href=http://localhost:8080/JavaUserManagementSystem_ver1.0/"+homeURL+">トップへ戻る</a>";
+        //課題1修正箇所、戻り値を「index.jsp」のみから「ジャンプさせたいURLすべて」に修正しました
     }
 }
