@@ -28,11 +28,21 @@ public class InsertResult extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+                
         //セッションスタート
         HttpSession session = request.getSession();
         
         try{
+            String accesschk = request.getParameter("result");
+            if(accesschk ==null || (Integer)session.getAttribute("result")!=Integer.parseInt(accesschk)){
+                
+                throw new Exception("不正なアクセスです");
+               
+            }//課題2修正箇所 insertconfirmからアクセスされたときにランダムの値を受け取る。
+            //受け取れないとエラーになる
+
+            
+            
             //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
             UserDataDTO userdata = new UserDataDTO();
             userdata.setName((String)session.getAttribute("name"));

@@ -29,6 +29,11 @@ public class InsertConfirm extends HttpServlet {
         try{
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
+
+            session.setAttribute("result", (int) (Math.random() * 1000));
+            request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
+            //Insertを参考に作成。resultというセッションにランダムな値を挿入して格納
+
             String accesschk = request.getParameter("ac");
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
                 throw new Exception("不正なアクセスです");
