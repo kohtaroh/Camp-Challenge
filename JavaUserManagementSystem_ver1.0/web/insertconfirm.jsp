@@ -46,13 +46,20 @@
      {%>  <br>自己紹介              <%}
 //課題3 それぞれが未入力の場合に対応したメッセージを表示する
    //こちらの「type」もだが、ラジオボタンが未入力の場合は「null」が与えられるため条件が他と違う
-}%>    
-        
-        
-        
-   
+}%> 
+
         <form action="insert" method="POST">
-            <input type="submit" name="no" value="登録画面に戻る">
+            <input type="hidden" name="name" value= "<%= request.getParameter("name") %>" >
+            <input type="hidden" name="year" value= "<%= request.getParameter("year") %>" >
+            <input type="hidden" name="month" value= "<%= request.getParameter("month") %>" >
+            <input type="hidden" name="day" value= "<%= request.getParameter("day") %>" >
+            <input type="hidden" name="type" value= "<%= request.getParameter("type") %>" >
+            <input type="hidden" name="tell" value= "<%= request.getParameter("tell") %>" >
+            <input type="hidden" name="comment" value= "<%= request.getParameter("comment") %>" >
+<%//課題4「hidden」によって「insert」から送られてきたデータをそのまま送り返す
+//空データの場合は「""」が挿入されるが、「insert」側で処理するようにしている
+%>            
+            <input type="submit" name="no" value = "登録画面に戻る" >
         </form>
         
         <br><br><%=JumsHelper.getInstance().home()%>
