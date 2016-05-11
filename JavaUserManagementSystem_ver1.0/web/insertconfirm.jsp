@@ -12,13 +12,20 @@
         <title>JUMS登録確認画面</title>
     </head>
     <body>
-    <% if(!hs.getAttribute("name").equals("")){ %>
+        
+    <% if(!request.getParameter("name").equals("")&&!request.getParameter("year").equals("")&&
+          !request.getParameter("month").equals("")&&!request.getParameter("day").equals("")&&
+          !request.getParameter("type").equals("")&&!request.getParameter("tell").equals("")&&
+          !request.getParameter("comment").equals("")){ 
+    //課題3「hs.getAttribute」では情報を文字そのままで受け取れないため修正。
+    //また、If文に「name」のみだったため、全ての要素を追加。全てに情報がある時に登録が可能になる
+    %>
         <h1>登録確認</h1>
-        名前:<%= hs.getAttribute("name")%><br>
-        生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
-        種別:<%= hs.getAttribute("type")%><br>
-        電話番号:<%= hs.getAttribute("tell")%><br>
-        自己紹介:<%= hs.getAttribute("comment")%><br>
+        名前:<%= request.getParameter("name")%><br>
+        生年月日:<%= request.getParameter("year")+"年"+request.getParameter("month")+"月"+request.getParameter("day")+"日"%><br>
+        種別:<%= request.getParameter("type")%><br>
+        電話番号:<%= request.getParameter("tell")%><br>
+        自己紹介:<%= request.getParameter("comment")%><br>
         上記の内容で登録します。よろしいですか？
         <form action="insertresult" method="POST">
             <input type="submit" name="yes" value="はい">
