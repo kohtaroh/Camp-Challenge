@@ -15,10 +15,11 @@
         
     <% if(!request.getParameter("name").equals("")&&!request.getParameter("year").equals("")&&
           !request.getParameter("month").equals("")&&!request.getParameter("day").equals("")&&
-          !request.getParameter("type").equals("")&&!request.getParameter("tell").equals("")&&
+          request.getParameter("type")!=null&&!request.getParameter("tell").equals("")&&
           !request.getParameter("comment").equals("")){ 
     //課題3「hs.getAttribute」では情報を文字そのままで受け取れないため修正。
     //また、If文に「name」のみだったため、全ての要素を追加。全てに情報がある時に登録が可能になる
+    //「type」だが、ラジオボタンが未入力の場合は「null」が与えられるため条件が他と違う
     %>
         <h1>登録確認</h1>
         名前:<%= request.getParameter("name")%><br>
@@ -32,12 +33,30 @@
         </form>
     <% }else{ %>
         <h1>入力が不完全です</h1>
-    <% } %>
+        以下の情報を追加してください
+     <% if(request.getParameter("name").equals(""))
+     {%>  <br>名前              <%}
+        if(request.getParameter("year").equals("")||request.getParameter("month").equals("")||request.getParameter("day").equals(""))
+     {%>  <br>生年月日              <%}
+        if(request.getParameter("type")==null)
+     {%>  <br>種別            <%}
+        if(request.getParameter("tell").equals(""))
+     {%>  <br>電話番号              <%}
+        if(request.getParameter("comment").equals(""))
+     {%>  <br>自己紹介              <%}
+//課題3 それぞれが未入力の場合に対応したメッセージを表示する
+   //こちらの「type」もだが、ラジオボタンが未入力の場合は「null」が与えられるため条件が他と違う
+}%>    
+        
+        
+        
+   
         <form action="insert" method="POST">
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         
         <br><br><%=JumsHelper.getInstance().home()%>
+        <br>注意！保存されません！！
         <%
 //課題1修正箇所
 //JumsHelper()のhome()の戻り値を使用するURLに変更したため
