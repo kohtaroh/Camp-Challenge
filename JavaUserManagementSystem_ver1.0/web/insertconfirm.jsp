@@ -29,7 +29,9 @@
         自己紹介:<%= request.getParameter("comment")%><br>
         上記の内容で登録します。よろしいですか？
         <form action="insertresult" method="POST">
-            <input type="submit" name="yes" value="はい">
+         <input type="hidden" name="result"  value="<%= session.getAttribute("result")%>">
+         <%//課題2insertを参考に作成%>
+         <input type="submit" name="yes" value="はい">
         </form>
     <% }else{ %>
         <h1>入力が不完全です</h1>
@@ -49,16 +51,6 @@
 }%> 
 
         <form action="insert" method="POST">
-            <input type="hidden" name="name" value= "<%= request.getParameter("name") %>" >
-            <input type="hidden" name="year" value= "<%= request.getParameter("year") %>" >
-            <input type="hidden" name="month" value= "<%= request.getParameter("month") %>" >
-            <input type="hidden" name="day" value= "<%= request.getParameter("day") %>" >
-            <input type="hidden" name="type" value= "<%= request.getParameter("type") %>" >
-            <input type="hidden" name="tell" value= "<%= request.getParameter("tell") %>" >
-            <input type="hidden" name="comment" value= "<%= request.getParameter("comment") %>" >
-<%//課題4「hidden」によって「insert」から送られてきたデータをそのまま送り返す
-//空データの場合は「""」が挿入されるが、「insert」側で処理するようにしている
-%>            
             <input type="submit" name="no" value = "登録画面に戻る" >
         </form>
         
