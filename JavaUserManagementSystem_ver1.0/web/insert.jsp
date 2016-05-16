@@ -1,53 +1,62 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
 <% request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
-   HttpSession hs = request.getSession();
+   session = request.getSession();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-    <%
-           String name = "";
-           String On = "";
-           String year = "";
-           String month = "";
-           String day = "";
+    <%  
+        String name="";//課題4 セッションから
+         if ( session.getAttribute("name") != null)
+             {
+                name = (String)session.getAttribute("name") ;
+             }
+        String On = "";//生年月日入力時に初期値を設定するが、「選択しない」という初期値をここで宣言しておく
+        String year = "";
+         if ( session.getAttribute("year") != null)
+            {   
+                year = (String)session.getAttribute("year") ;
+            } 
+        String month = "";
+         if ( session.getAttribute("month") != null)
+            {   
+                month = (String)session.getAttribute("month") ;
+            } 
+        String day = "";
+         if ( session.getAttribute("day") != null)
+            {   
+                day = (String)session.getAttribute("day") ;
+            } 
            String type1 = "";
            String type2 = "";
            String type3 = "";
-           String tell = "";
-           String comment = "";
-           String submit = "";
-           //課題4それぞれに初期値となる変数をを設定
-           //この後変数が変化したりしなかったりする
-            
-        if("登録画面に戻る".equals(request.getParameter("no")))
-        {//課題4画面に戻ってきたときに「hidden」で送り返されてきたパラメータを挿入
-         //データが空の場合は""が入るため問題なく起動する
-           name = request.getParameter("name");
-           year = request.getParameter("year");
-           month = request.getParameter("month");
-           day = request.getParameter("day");
-           tell = request.getParameter("tell");
-           comment = request.getParameter("comment");
-
-           if(request.getParameter("type").length()>0)
-           {//課題4ラジオボタンが押されていた場合にどれか一つを初期値としてくれる
-                if("1".equals(request.getParameter("type")))
-                 {
+           String a=(String)session.getAttribute("type");
+           if("1".equals(a))
+                {
                     type1 = "checked";
-                 }
-                if("2".equals(request.getParameter("type")))
-                  {
+                }
+            if("2".equals(a))
+                {
                     type2 = "checked";
-                  }
-                if("3".equals(request.getParameter("type")))
-                  {
-                     type3 = "checked";
-                  }
-           }
-        }
+                }
+            if("3".equals(a))
+                {
+                    type3 = "checked";
+                }
+        String tell = "";
+         if ( session.getAttribute("tell") != null)
+            {   
+               tell = (String)session.getAttribute("tell") ;
+            } 
+        String comment = "";
+         if ( session.getAttribute("comment") != null)
+            {   
+                comment = (String)session.getAttribute("comment");
+            }
+            //課題4それぞれに初期値となる変数をを設定
+           //この後変数が変化したりしなかったりする
     %>    
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -124,7 +133,7 @@
         <br>
         <textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard" ><%= comment %></textarea><br><br>
         
-        <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
+        <input type="hidden" name="ac"  value="<%= session.getAttribute("ac")%>">
         <input type="submit" name="btnSubmit" value="確認画面へ">
     </form>
         <br>
