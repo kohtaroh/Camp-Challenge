@@ -1,7 +1,7 @@
 package jums;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,21 +41,25 @@ public class InsertResult extends HttpServlet {
             }//課題2修正箇所 insertconfirmからアクセスされたときにランダムの値を受け取る。
             //受け取れないとエラーになる
 
-            
-            
+  
+            String str = session.getAttribute("year")+"/"+session.getAttribute("month")+"/"+session.getAttribute("day");
+            //課題6誕生日のデータをDate型に変換できるように連結して変数に保存
+            java.util.Date date = DateFormat.getDateInstance().parse(str);
+      
             //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
             UserDataDTO userdata = new UserDataDTO();
             userdata.setName((String)session.getAttribute("name"));
-            Calendar birthday = Calendar.getInstance();
-            userdata.setBirthday(birthday.getTime());
+            userdata.setBirthday(date);//ここで連結した文字をいれる
             userdata.setType(Integer.parseInt((String)session.getAttribute("type")));
             userdata.setTell((String)session.getAttribute("tell"));
             userdata.setComment((String)session.getAttribute("comment"));
             
             //DBへデータの挿入
             UserDataDAO .getInstance().insert(userdata);
-            
+         
+             
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);
+             session.invalidate(); //課題5いらなくなったセッションを削除 そのためリロードするとエラーになってしまう
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示
             request.setAttribute("error", e.getMessage());
