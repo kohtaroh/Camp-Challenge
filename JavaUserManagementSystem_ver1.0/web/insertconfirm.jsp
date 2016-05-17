@@ -28,15 +28,30 @@
             &&!"".equals(session.getAttribute("month"))&&!"".equals(session.getAttribute("day"))
             &&session.getAttribute("type")!=null&&!"".equals(session.getAttribute("tell"))
             &&!"".equals(session.getAttribute("comment"))){*/
+            String type ="";
             if("true".equals(session.getAttribute("check"))){
             //InsertConfirmで作成したsessionを使用
+            
+            if("1".equals(k.getType()))
+            {
+                type = "エンジニア";
+            }
+            if("2".equals(k.getType()))
+            {
+                type = "営業";
+            }
+            if("3".equals(k.getType()))
+            {
+                type = "その他";
+            }//登録確認画面で数字ではなく種別の文字で出したい
+            
     %>
       <h1>登録確認</h1>
            名前:<%=k.getName()%><br>
         生年月日:<%=k.getYear()%>+"年"+
                 <%=k.getMonth()%>+"月"+
                 <%=k.getDay()%>+"日"<br>
-        種別:<%=k.getType()%><br>
+        種別:<%=type%><br>
         電話番号:<%=k.getTell()%><br>
         自己紹介:<%=k.getComment()%><br>
         上記の内容で登録します。よろしいですか？ 
