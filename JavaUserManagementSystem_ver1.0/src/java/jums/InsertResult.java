@@ -1,6 +1,7 @@
 package jums;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -28,10 +29,11 @@ public class InsertResult extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+                 PrintWriter out = response.getWriter();
         //セッションスタート
         HttpSession session = request.getSession();
-        
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
         try{
             String accesschk = request.getParameter("result");
             if(accesschk ==null || (Integer)session.getAttribute("result")!=Integer.parseInt(accesschk)){
@@ -40,9 +42,21 @@ public class InsertResult extends HttpServlet {
                
             }//課題2修正箇所 insertconfirmからアクセスされたときにランダムの値を受け取る。
             //受け取れないとエラーになる
+            kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
+            String str = k.getYear()+"/"+k.getMonth()+"/"+k.getDay();
+            //課題6誕生日のデータをDate型に変換できるように連結して変数に保存
+            java.util.Date date = DateFormat.getDateInstance().parse(str);
+      
+            //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
+            UserDataDTO userdata = new UserDataDTO();
+            userdata.setName(k.getName());
+            userdata.setBirthday(date);//ここで連結した文字をいれる
+            userdata.setType(Integer.parseInt(k.getType()));
+            userdata.setTell(k.getTell());
+            userdata.setComment(k.getComment());
+        
 
-  
-            String str = session.getAttribute("year")+"/"+session.getAttribute("month")+"/"+session.getAttribute("day");
+   /*         String str = session.getAttribute("year")+"/"+session.getAttribute("month")+"/"+session.getAttribute("day");
             //課題6誕生日のデータをDate型に変換できるように連結して変数に保存
             java.util.Date date = DateFormat.getDateInstance().parse(str);
       
@@ -53,13 +67,13 @@ public class InsertResult extends HttpServlet {
             userdata.setType(Integer.parseInt((String)session.getAttribute("type")));
             userdata.setTell((String)session.getAttribute("tell"));
             userdata.setComment((String)session.getAttribute("comment"));
-            
+    */    
             //DBへデータの挿入
             UserDataDAO .getInstance().insert(userdata);
          
              
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);
-             session.invalidate(); //課題5いらなくなったセッションを削除 そのためリロードするとエラーになってしまう
+      //      session.invalidate(); //課題5いらなくなったセッションを削除 そのためリロードするとエラーになってしまう
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示
             request.setAttribute("error", e.getMessage());

@@ -5,26 +5,22 @@
  */
 package jums;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 /**
  *
  * @author kotaroh
  */
 
-public class kadai7Bean {
-  private String name;
-  private String year;
-  private String month;
-  private String day;
-  private String type;
-  private String tell;
-  private String comment;
-                
-    public kadai7Bean(){}
-    HttpServletRequest request;
-    HttpSession session = request.getSession();
+public class kadai7Bean implements Serializable{
+  public kadai7Bean(){}
+     private String name;
+     private String year;
+     private String month;
+     private String day;
+     private String type;
+     private String tell;
+     private String comment;
     
     public void setName(String name)
     {
@@ -89,15 +85,4 @@ public class kadai7Bean {
     {
         return this.comment;
     }        
-    
-        
-        
-
-
-
-
-
-
-
-
 }

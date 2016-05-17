@@ -1,8 +1,9 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
+<%@page import="jums.kadai7Bean" %>
+<%  session = request.getSession();
+    kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
 
-<%
-    HttpSession hs = request.getSession();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,15 +14,15 @@
     </head>
     <body>
         <h1>登録結果</h1><br>
-        名前:<%= hs.getAttribute("name")%><br>
-        生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
-        種別:<%= hs.getAttribute("type")%><br>
-        電話番号:<%= hs.getAttribute("tell")%><br>
-        自己紹介:<%= hs.getAttribute("comment")%><br>
+        名前: <%= k.getName() %><br>
+        生年月日: <%= k.getYear()+"年"+k.getMonth()+"月"+k.getDay()+"日"%><br>
+        種別: <%= k.getType()%><br>
+        電話番号: <%= k.getTell()%><br>
+        自己紹介: <%= k.getComment()%><br>
         以上の内容で登録しました。<br>
         
         <br><br><%=JumsHelper.getInstance().home()%>
-        <%
+        <% 
 //課題1修正箇所
 //JumsHelper()のhome()の戻り値を使用するURLに変更したため
 //それを呼び出すだけでいい

@@ -1,6 +1,7 @@
 package jums;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +27,11 @@ public class InsertConfirm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
+            response.setContentType("text/html;charset=UTF-8");
+                  PrintWriter out = response.getWriter();
+    try{
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
-
-            session.setAttribute("result", (int) (Math.random() * 1000));
-            request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
-            //Insertを参考に作成。resultというセッションにランダムな値を挿入して格納
 
             String accesschk = request.getParameter("ac");
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
@@ -47,18 +46,40 @@ public class InsertConfirm extends HttpServlet {
             String type = request.getParameter("type");
             String tell = request.getParameter("tell");
             String comment = request.getParameter("comment");
-
+            
+            kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
+            //Insertで作ったkadai7Beanのインスタンスを呼び出して、数値を書き換える
+            k.setName(name);
+            k.setYear(year);
+            k.setMonth(month);
+            k.setDay(day);
+            k.setType(type);
+            k.setTell(tell);
+            k.setComment(comment);
+            
+            session.setAttribute("kadai7Bean",k);
+             System.out.print("s");
+            if(!"".equals(name)&&!"".equals(year)&&!"".equals(month)
+               &&!"".equals(day)&&!"".equals(type)&&!"".equals(tell)&&!"".equals(comment))
+            {
+               session.setAttribute("check","true");
+            }else{session.setAttribute("check","false");}
+            //セッションのcheckにinsertconfirm.jspで使用する条件、「全部が入力されているか」を作成
+            
+            
+            
             //セッションに格納
-            session.setAttribute("name", name);
+         /* session.setAttribute("name", name);
             session.setAttribute("year", year);
             session.setAttribute("month",month);
             session.setAttribute("day", day);
             session.setAttribute("type", type);
             session.setAttribute("tell", tell);
             session.setAttribute("comment", comment);
-            System.out.println("Session updated!!");
-            
+          */ 
+            session.setAttribute("result", (int) (Math.random() * 1000)); 
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
+            //Insertを参考に作成。resultにランダムな値を挿入して格納
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);

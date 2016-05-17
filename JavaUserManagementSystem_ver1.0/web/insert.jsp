@@ -1,17 +1,21 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
-<% request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
-   session = request.getSession();
+<%@page import="jums.kadai7Bean" %>
+<jsp:useBean id="k7" class="jums.kadai7Bean" scope="session" />
+<%  session = request.getSession();
+   kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
+   response.setContentType("text/html;charset=UTF-8");
+   request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
     <%  
-        String name="";//課題4 セッションから
-         if ( session.getAttribute("name") != null)
+     /*   String name="";//課題4 セッションから
+         if(k.getName()!=null)
              {
-                name = (String)session.getAttribute("name") ;
+                name = k.getName() ;
              }
         String On = "";//生年月日入力時に初期値を設定するが、「選択しない」という初期値をここで宣言しておく
         String year = "";
@@ -56,6 +60,56 @@
                 comment = (String)session.getAttribute("comment");
             }
             //課題4それぞれに初期値となる変数をを設定
+           //この後変数が変化したりしなかったりする<jsp:getProperty name="k7" property="name"/>
+*/
+        String name="";//課題7 セッションから作成したjavabeansへ変更
+         if(k.getName()!=null)
+             {
+                name = k.getName() ;
+             }
+        String On = "";//生年月日入力時に初期値を設定するが、「選択しない」という初期値をここで宣言しておく
+        String year = "";
+         if (k.getYear()!=null)
+            {   
+                year = k.getYear() ;
+            } 
+        String month = "";
+         if ( k.getMonth() != null)
+            {   
+                month = k.getMonth() ;
+            } 
+        String day = "";
+         if ( k.getDay() != null)
+            {   
+                day = k.getDay() ;
+            } 
+           String type1 = "";
+           String type2 = "";
+           String type3 = "";
+           String a=k.getType();
+           if("1".equals(a))
+                {
+                    type1 = "checked";
+                }
+            if("2".equals(a))
+                {
+                    type2 = "checked";
+                }
+            if("3".equals(a))
+                {
+                    type3 = "checked";
+                }
+        String tell = "";
+         if ( k.getTell() != null)
+            {   
+               tell = k.getTell() ;
+            } 
+        String comment = "";
+         if ( k.getComment() != null)
+            {   
+                comment = k.getComment();
+            }
+            //課題7それぞれに初期値となる変数をを設定
            //この後変数が変化したりしなかったりする
     %>    
 

@@ -1,6 +1,7 @@
 package jums;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +23,32 @@ public class Insert extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+           response.setContentType("text/html;charset=UTF-8");
+   request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
+        PrintWriter out = response.getWriter();
+        
+            kadai7Bean k = new kadai7Bean();
+            //一番最初に空白をsetしておく。これで初期値がnullでなく空白になってくれる
+            k.setName("");
+            k.setYear("");
+            k.setMonth("");
+            k.setDay("");
+            k.setType("");
+            k.setTell("");
+            k.setComment("");
+            
+            session.setAttribute("kadai7Bean",k);
+            
+        out.println(k.getName());
         session.setAttribute("ac", (int) (Math.random() * 1000));
-        request.getRequestDispatcher("/insert.jsp").forward(request, response);   
+        request.getRequestDispatcher("/insert.jsp").forward(request, response);
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
