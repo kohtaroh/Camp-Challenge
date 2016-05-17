@@ -1,0 +1,1 @@
+create table user_t(userID int primary key AUTO_INCREMENT,name varchar(255),birthday date,tell varchar(255), type int,comment text,newDate Datetime);
