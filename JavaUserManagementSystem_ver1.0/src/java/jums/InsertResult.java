@@ -73,7 +73,7 @@ public class InsertResult extends HttpServlet {
          
              
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);
-      //      session.invalidate(); //課題5いらなくなったセッションを削除 そのためリロードするとエラーになってしまう
+            session.invalidate(); //課題5いらなくなったセッションを削除 そのためリロードするとエラーになってしまう
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示
             request.setAttribute("error", e.getMessage());
