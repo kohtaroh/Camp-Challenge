@@ -17,6 +17,7 @@
             {
                 type = "その他";
             }//登録確認画面で数字ではなく種別の文字で出したい
+            //下記の登録結果を従来のセッションのもの(getAttribute())からjavabeansのものに変更
 %>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

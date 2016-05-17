@@ -1,7 +1,6 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,6 @@ public class InsertConfirm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
-                  PrintWriter out = response.getWriter();
     try{
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
@@ -58,7 +56,7 @@ public class InsertConfirm extends HttpServlet {
             k.setComment(comment);
             
             session.setAttribute("kadai7Bean",k);
-             System.out.print("s");
+            
             if(!"".equals(name)&&!"".equals(year)&&!"".equals(month)
                &&!"".equals(day)&&!"".equals(type)&&!"".equals(tell)&&!"".equals(comment))
             {
@@ -66,17 +64,16 @@ public class InsertConfirm extends HttpServlet {
             }else{session.setAttribute("check","false");}
             //セッションのcheckにinsertconfirm.jspで使用する条件、「全部が入力されているか」を作成
             
-            
-            
-            //セッションに格納
-         /* session.setAttribute("name", name);
+       /*   セッションに格納 もう使わないのでコメントアウト
+            session.setAttribute("name", name);
             session.setAttribute("year", year);
             session.setAttribute("month",month);
             session.setAttribute("day", day);
             session.setAttribute("type", type);
             session.setAttribute("tell", tell);
             session.setAttribute("comment", comment);
-          */ 
+        */ 
+         
             session.setAttribute("result", (int) (Math.random() * 1000)); 
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
             //Insertを参考に作成。resultにランダムな値を挿入して格納

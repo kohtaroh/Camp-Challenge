@@ -1,9 +1,7 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
 <%@page import="jums.kadai7Bean" %>
-<%//
-   response.setContentType("text/html;charset=UTF-8");
-   request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
+<% response.setContentType("text/html;charset=UTF-8");
    kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,23 +26,26 @@
             &&!"".equals(session.getAttribute("month"))&&!"".equals(session.getAttribute("day"))
             &&session.getAttribute("type")!=null&&!"".equals(session.getAttribute("tell"))
             &&!"".equals(session.getAttribute("comment"))){*/
-            String type ="";
-            if("true".equals(session.getAttribute("check"))){
+      
+           //課題7 
+            if("true".equals(session.getAttribute("check")))
+            {
             //InsertConfirmで作成したsessionを使用
-            
-            if("1".equals(k.getType()))
-            {
-                type = "エンジニア";
-            }
-            if("2".equals(k.getType()))
-            {
-                type = "営業";
-            }
-            if("3".equals(k.getType()))
-            {
-                type = "その他";
-            }//登録確認画面で数字ではなく種別の文字で出したい
-            
+            String type ="";
+                if("1".equals(k.getType()))
+                {
+                    type = "エンジニア";
+                }
+                if("2".equals(k.getType()))
+                {
+                    type = "営業";
+                }
+                if("3".equals(k.getType()))
+                {
+                    type = "その他";
+                }//登録確認画面で数字ではなく種別の文字で出したい
+                 //のでここで変換を行う
+                 //下記の登録確認では従来のセッションのもの(getAttribute())からjavabeansのものに変更
     %>
       <h1>登録確認</h1>
            名前:<%=k.getName()%><br>
@@ -79,8 +80,8 @@
      
      
      
-     
- //下記の{}の中に%><%//でそれぞれのif分に応じて足りない日本語が入る    
+ //課題7 下記の{}の中に%><%//でそれぞれのif分に応じて足りない日本語が入る      
+ //コメントアウトの方法がわからなかったので、削除 
  //    if("".equals(session.getAttribute("name"))||null==session.getAttribute("name"))
  //    {}
  //         if("".equals(session.getAttribute("year"))||null==session.getAttribute("year")

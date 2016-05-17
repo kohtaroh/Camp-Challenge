@@ -1,7 +1,6 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +27,10 @@ public class Insert extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
            response.setContentType("text/html;charset=UTF-8");
-   request.setCharacterEncoding("UTF-8");//課題4データが戻ってきたとき用のエンコード処理
-        PrintWriter out = response.getWriter();
         
             kadai7Bean k = new kadai7Bean();
-            //一番最初に空白をsetしておく。これで初期値がnullでなく空白になってくれる
+            //一番最初に空白をsetしておく。これで初期値がnullでなく空白になってくれて、
+            //nullであることによるエラーもでない
             k.setName("");
             k.setYear("");
             k.setMonth("");
@@ -42,15 +40,10 @@ public class Insert extends HttpServlet {
             k.setComment("");
             
             session.setAttribute("kadai7Bean",k);
-            
-        out.println(k.getName());
+            //呼び出してsetしたkをそのままセッションにいれる
         session.setAttribute("ac", (int) (Math.random() * 1000));
         request.getRequestDispatcher("/insert.jsp").forward(request, response);
-        
-        
-        
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -89,5 +82,4 @@ public class Insert extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

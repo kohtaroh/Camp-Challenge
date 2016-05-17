@@ -6,7 +6,6 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,16 +32,14 @@ public class InsertResult extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
     try{
-        
-   /*     String accesschk = request.getParameter("result");
+        String accesschk = request.getParameter("result");
             if(accesschk ==null || (Integer)session.getAttribute("result")!=Integer.parseInt(accesschk)){
                 
                 throw new Exception("不正なアクセスです"); }
-        */       
-           //課題2修正箇所 insertconfirmからアクセスされたときにランダムの値を受け取る。
+               
+            //課題2修正箇所 insertconfirmからアクセスされたときにランダムの値を受け取る。
             //受け取れないとエラーになる
      
            kadai7Bean k = (kadai7Bean)session.getAttribute("kadai7Bean");
@@ -57,7 +54,7 @@ public class InsertResult extends HttpServlet {
             userdata.setType(Integer.parseInt(k.getType()));
             userdata.setTell(k.getTell());
             userdata.setComment(k.getComment());
-        
+        //課題7 引数を従来のセッションのものからjavabeansのものに変更
 
        /*     String str = session.getAttribute("year")+"/"+session.getAttribute("month")+"/"+session.getAttribute("day");
             //課題6誕生日のデータをDate型に変換できるように連結して変数に保存
