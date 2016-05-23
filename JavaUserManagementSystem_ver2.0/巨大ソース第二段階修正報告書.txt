@@ -1,37 +1,38 @@
-0.DBManagerにsqlのパスを入力...30m
+()内が実際にかかった時間
+0.DBManagerにsqlのパスを入力...30m(30m)
 ついでに操作用にサーブレットを二つ作成
-1.searchresult.jspの検索を修正。空入力でも表示するように...1h
+1.searchresult.jspの検索を修正。空入力でも表示するように...30m(1h)
 UserDataDAOのメソッドsearchの前半を修正。どのような入力にも対応できる
 
-2.SearchResult.javaの表示を修正。すべて表示するように...1h
+2.SearchResult.javaの表示を修正。すべて表示するように...30m(1h)
 UserDataDAOのメソッドsearchの後半を修正。戻り値をArrayListにした。
 
-3.search.jspのデータをpostからgetに。受け取り側も変更...5m*長谷川さんのを参考にしたため早い
+3.search.jspのデータをpostからgetに。受け取り側も変更...1h(5m)*長谷川さんのを参考にしたため早い
 
-4.resultdetail.jspの表示にIDがない...5m
+4.resultdetail.jspの表示にIDがない...5m(5m)
 
-5.Update.javaが対応させたいjspにジャンプしない・処理の追加...50m
+5.Update.javaが対応させたいjspにジャンプしない・処理の追加...2h(50m)
 UserDataDAOにメソッドを作成
 JumsHelperにDate型"yyyy-mm-dd"を"yyyy""mm""dd"に分解するメソッドを作成
-6.UpdateResult.javaが対応させたいjspにジャンプしない・処理の追加・エラーメッセージの追加...20m
+6.UpdateResult.javaが対応させたいjspにジャンプしない・処理の追加・エラーメッセージの追加...1h(20m)
 
-7.updateresult.jspに表示させるべき変数が書かれていない...10m
+7.updateresult.jspに表示させるべき変数が書かれていない...1h(10m)
 
-8.Delete.javaが対応させたいjspにジャンプしない・処理の追加...30m
+8.Delete.javaが対応させたいjspにジャンプしない・処理の追加...1h(30m)
 UserDataDAOにメソッドを作成
 
-9.delete.jspのジャンプ先が違うので修正...5m
+9.delete.jspのジャンプ先が違うので修正...5m(5m)
 
-10.deleteresult.jspにエラーメッセージの追加...5m
+10.DeleteResult.javaにエラーメッセージの追加...5m(5m)
 
-11.ResultDetail.javaの表示のためのidに2が入っていたため修正...10m
+11.ResultDetail.javaの表示のためのidに2が入っていたため修正...20m(10m)
 
-12.updateresultで</body>が二つあるので削除...5m
+12.updateresultで</body>が二つあるので削除...5m(5m)
 
 非機能要件?
 1.searchresultとresultdetailで種別が数字ではなく日本語で表示するように変更
-...5m
+...30m(5m)
 JumsHelperにあったものを流用
-2.update/delete両resultに、トップに戻る他に詳細表示(resultditail.jsp)に戻るボタンの追加...10m
+2.update/delete両resultに、トップに戻る他に詳細表示(resultditail.jsp)に戻るボタンの追加...30m(10m)
 InsertConfirmを参考に作成
-3.deleteresultにトップに戻るを追加...5m
+3.deleteresultにトップに戻るを追加...5m(5m)
