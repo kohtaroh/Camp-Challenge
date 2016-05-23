@@ -1,8 +1,8 @@
-<%@page import="javax.servlet.http.HttpSession"
-        import="jums.JumsHelper"
+<%@page import="jums.JumsHelper"
         import="jums.UserDataBeans" %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
+    request.setCharacterEncoding("UTF-8");
     UserDataBeans udb = (UserDataBeans)request.getAttribute("udb");    
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +14,8 @@
     </head>
     <body>
         <h1>変更結果</h1><br>
-        名前:<%= udb.getName()%><br>
+        名前:<%= udb.getName()%><br><!--  既に変更は完了している。前.javaのUserDataなら年月日を繫げてくれているが、
+        表示したいフォントではなく、変換が必要になるためこちらを使用することにした-->
         生年月日:<%= udb.getYear()+"年"+udb.getMonth()+"月"+udb.getDay()+"日"%><br>
         種別:<%= jh.exTypenum(udb.getType())%><br>
         電話番号:<%= udb.getTell()%><br>
@@ -22,5 +23,4 @@
         以上の内容で変更しました。<br>
     </body>
     <%=jh.home()%>
-    <%//削除</body>%>
 </html>

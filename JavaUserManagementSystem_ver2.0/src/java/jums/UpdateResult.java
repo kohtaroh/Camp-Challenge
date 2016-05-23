@@ -26,7 +26,8 @@ public class UpdateResult extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        try{
+        try {
+            
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
             UserDataBeans udb = new UserDataBeans();
             udb.setName(request.getParameter("name"));
@@ -41,15 +42,16 @@ public class UpdateResult extends HttpServlet {
             UserDataDTO userdata = new UserDataDTO();
             udb.UD2DTOMapping(userdata);
             userdata.setUserID(Integer.parseInt(request.getParameter("userID")));
-            
+
             //UserDataDAOに作成したメソッドを使いDBのデータを変更
-            UserDataDAO .getInstance().update(userdata);
-            
+            UserDataDAO.getInstance().update(userdata);
+
+            //sessionはもう使わないので削除
             session.invalidate();
             //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
             request.setAttribute("udb", udb);
             request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         } finally {

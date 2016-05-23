@@ -24,21 +24,21 @@ public class Delete extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try {
-        /* TODO output your page here. You may use following sample code. */
-        //データの橋渡しをさせたい。コードが何もなかったので、以下追加
-        response.setContentType("text/html;charset=UTF-8");
+            //データの橋渡しをさせたい。コードが何もなかったので、以下追加
+            response.setContentType("text/html;charset=UTF-8");
 
-        request.setCharacterEncoding("UTF-8");
-        UserDataDTO resultData = UserDataDAO .getInstance().searchByID(request.getParameter("userID"));
-        session.setAttribute("delete", resultData);        
-        request.getRequestDispatcher("/delete.jsp").forward(request, response);
-        }catch(Exception e){
-        //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
-        request.setAttribute("error", e.getMessage());
-        request.getRequestDispatcher("/error.jsp").forward(request, response);
+            //ここでsessionに入れておけば、引き出せないとエラーになるためdelete.jspの直リンクを阻止できる
+            request.setCharacterEncoding("UTF-8");
+            UserDataDTO resultData = UserDataDAO.getInstance().searchByID(request.getParameter("userID"));
+            session.setAttribute("delete", resultData);
+            request.getRequestDispatcher("/delete.jsp").forward(request, response);
+        } catch (Exception e) {
+            //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         } finally {
         }
     }

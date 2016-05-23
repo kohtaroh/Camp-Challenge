@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author hayashi-s
  */
 public class Update extends HttpServlet {
-
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,19 +30,20 @@ public class Update extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         request.setCharacterEncoding("UTF-8");
-            
 
         try {
-            /* TODO output your page here. You may use following sample code. */
-            UserDataDTO resultData = UserDataDAO .getInstance().searchByID(request.getParameter("userID"));
-        session.setAttribute("update", resultData);
-        request.getRequestDispatcher("/update.jsp").forward(request, response);            
-        }catch(Exception e){
+            //ここでsessionに入れておけば、引き出せないとエラーになるためdelete.jspの直リンクを阻止できる
+            UserDataDTO resultData = UserDataDAO.getInstance().searchByID(request.getParameter("userID"));
+            session.setAttribute("update", resultData);
+            
+            request.getRequestDispatcher("/update.jsp").forward(request, response);
+        } catch (Exception e) {
             //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
-        }finally{
-            }}
+        } finally {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

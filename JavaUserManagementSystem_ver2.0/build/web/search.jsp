@@ -32,7 +32,7 @@
 
         <table border=1>
             <th align="center" rowspan="5">種別:</th>
-            <% for(int i = 1; i<=3; i++){ %>
+            <% for(int i = 1; i<=3; i++){ %>                 <!-- 表示を数字ではなく文字に変更したい-->
             <tr><td><input type="radio" name="type" value="<%=i%>"><%=jh.exTypenum(i)%></td></tr>
             <% } %>
             <tr><td><input type="radio" name="type" value="0" checked>なし</td></tr>

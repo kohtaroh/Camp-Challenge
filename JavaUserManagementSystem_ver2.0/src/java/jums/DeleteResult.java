@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,19 +30,23 @@ public class DeleteResult extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         try {
             /* TODO output your page here. You may use following sample code. */
 
             //UserDataDAOに作成したメソッドを使いDBのデータを削除
-       UserDataDAO.getInstance().delete(request.getParameter("id"));    
-       request.getRequestDispatcher("/deleteresult.jsp").forward(request, response);
+            UserDataDAO.getInstance().delete(request.getParameter("id"));
+            //sessionはもう使わないので削除
+            session.invalidate();
+            request.getRequestDispatcher("/deleteresult.jsp").forward(request, response);
 
-              }catch(Exception e){
-                   request.setAttribute("error", e.getMessage());
-                   request.getRequestDispatcher("/error.jsp").forward(request, response);    
-               } finally {
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        } finally {
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

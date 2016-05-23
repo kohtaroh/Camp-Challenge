@@ -1,13 +1,8 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="jums.JumsHelper" 
-        import="jums.UserDataDTO" 
-        import="jums.UserDataDAO" 
-        import="java.lang.*"
-        import="java.util.*"%>
+        import="jums.UserDataDTO"  %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
-        request.setCharacterEncoding("UTF-8");
-     UserDataDTO udd = (UserDataDTO)session.getAttribute("delete");
+    UserDataDTO udd = (UserDataDTO)session.getAttribute("delete");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +16,7 @@
     <br>以下の内容を削除します。よろしいですか？<br>
     名前:<%= udd.getName()%><br>
     生年月日:<%= udd.getBirthday()%><br>
+    <!-- 表示を数字ではなく文字に変更したい-->
     種別:<%= jh.exTypenum(udd.getType())%><br>
     電話番号:<%= udd.getTell()%><br>
     自己紹介:<%= udd.getComment()%><br>

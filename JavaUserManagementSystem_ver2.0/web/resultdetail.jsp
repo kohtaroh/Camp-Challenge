@@ -16,6 +16,7 @@
         ID:<%= udd.getUserID()%><br>
         名前:<%= udd.getName()%><br>
         生年月日:<%= udd.getBirthday()%><br>
+        <!-- 表示を数字ではなく文字に変更したい-->
         種別:<%= jh.exTypenum(udd.getType())%><br>
         電話番号:<%= udd.getTell()%><br>
         自己紹介:<%= udd.getComment()%><br>

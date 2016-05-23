@@ -36,3 +36,4 @@ JumsHelperにあったものを流用
 2.update/delete両resultに、トップに戻る他に詳細表示(resultditail.jsp)に戻るボタンの追加...30m(10m)
 InsertConfirmを参考に作成
 3.deleteresultにトップに戻るを追加...5m(5m)
+4.出来る限りの要素にコメントを追加

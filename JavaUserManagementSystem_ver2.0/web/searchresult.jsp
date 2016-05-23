@@ -1,6 +1,4 @@
 <%@page import="jums.JumsHelper"
-        import="jums.UserDataDTO"
-        import="jums.UserDataDAO"
         import="java.util.ArrayList" %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
@@ -27,7 +25,7 @@
                 <%for(int i=0;i<udd.size();i=i+5){ %>
                 <td><a href="ResultDetail?id=<%= udd.get(i)%>"><%= udd.get(i+1)%></a></td>
                 <td><%= udd.get(i+2)%></td>
-                <td><%= jh.exTypeOb(udd.get(i+3))%></td><%//数字ではなく対応の種別で表示したい%>
+                <td><%= jh.exTypeOb(udd.get(i+3))%></td><!-- 表示を数字ではなく文字に変更したい-->
                 <td><%= udd.get(i+4)%></td>
             </tr>
             <% } %>
