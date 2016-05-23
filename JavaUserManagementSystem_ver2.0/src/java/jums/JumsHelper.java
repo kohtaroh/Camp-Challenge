@@ -1,6 +1,8 @@
 package jums;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * 画面系の処理や表示を簡略化するためのヘルパークラス。定数なども保存されます
@@ -71,4 +73,27 @@ public class JumsHelper {
         }
         return "";
     }
+
+    public String exTypeOb(Object i){
+        String i2 = i.toString();
+        int i3 = new Integer(i2);
+        switch(i3){
+            case 1:
+                return "営業";
+            case 2:
+                return "エンジニア";
+            case 3:
+                return "その他";
+        }
+        return "";
+    }
+
+    public int[] exBirth(Date i){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        String str = sdf.format(i);
+        int year =Integer.parseInt(str.substring(0,4));
+        int month =Integer.parseInt(str.substring(5,7));
+        int day =Integer.parseInt(str.substring(8,10));
+        int[] Brith ={year,month,day};
+        return  Brith ;}
 }

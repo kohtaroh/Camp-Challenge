@@ -1,11 +1,11 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -24,21 +24,22 @@ public class Delete extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Delete</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Delete at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        /* TODO output your page here. You may use following sample code. */
+        //データの橋渡しをさせたい。コードが何もなかったので、以下追加
+        response.setContentType("text/html;charset=UTF-8");
+
+        request.setCharacterEncoding("UTF-8");
+        UserDataDTO resultData = UserDataDAO .getInstance().searchByID(request.getParameter("userID"));
+        session.setAttribute("delete", resultData);        
+        request.getRequestDispatcher("/delete.jsp").forward(request, response);
+        }catch(Exception e){
+        //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
+        request.setAttribute("error", e.getMessage());
+        request.getRequestDispatcher("/error.jsp").forward(request, response);
         } finally {
-            out.close();
         }
     }
 

@@ -37,6 +37,22 @@
         <servlet-class>jums.Delete</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>新規Servlet</servlet-name>
+        <servlet-class>jums.新規Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>テーブル初期化</servlet-name>
+        <servlet-class>jums.テーブル初期化</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>テーブル確認</servlet-name>
+        <servlet-class>jums.テーブル確認</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>新規Servl</servlet-name>
+        <servlet-class>jums.新規Servl</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteResult</servlet-name>
         <servlet-class>jums.DeleteResult</servlet-class>
     </servlet>
@@ -75,6 +91,22 @@
     <servlet-mapping>
         <servlet-name>Delete</servlet-name>
         <url-pattern>/Delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>新規Servlet</servlet-name>
+        <url-pattern>/__Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>テーブル初期化</servlet-name>
+        <url-pattern>/_______</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>テーブル確認</servlet-name>
+        <url-pattern>/______</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>新規Servl</servlet-name>
+        <url-pattern>/__Servl</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteResult</servlet-name>

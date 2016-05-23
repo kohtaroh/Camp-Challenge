@@ -1,4 +1,5 @@
-
+<%@page import="jums.JumsHelper" %>
+<%  JumsHelper jh = JumsHelper.getInstance();%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,4 +11,5 @@
     <h1>削除確認</h1>
     削除しました。<br>
     </body>
+    <%=jh.home()%>
 </html>

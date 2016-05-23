@@ -1,17 +1,17 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author hayashi-s
  */
 public class Update extends HttpServlet {
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -24,23 +24,25 @@ public class Update extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        //データの橋渡しをさせたい。コードが何もなかったので、以下四行の追加
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+
+        request.setCharacterEncoding("UTF-8");
+            
+
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Update</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Update at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
-    }
+            UserDataDTO resultData = UserDataDAO .getInstance().searchByID(request.getParameter("userID"));
+        session.setAttribute("update", resultData);
+        request.getRequestDispatcher("/update.jsp").forward(request, response);            
+        }catch(Exception e){
+            //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        }finally{
+            }}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

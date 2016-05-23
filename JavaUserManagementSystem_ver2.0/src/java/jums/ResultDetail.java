@@ -24,16 +24,15 @@ public class ResultDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         response.setContentType("text/html;charset=UTF-8");
+        
         try{
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
 
-            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
-            UserDataDTO searchData = new UserDataDTO();
-            searchData.setUserID(2);
-
-            UserDataDTO resultData = UserDataDAO .getInstance().searchByID(searchData);
+            //id2が入っていたため修正。受け取ったidで表示したい
+            //また、ブックマーク等で直接アクセスされても対応できるようにここでDBにアクセスする
+            UserDataDTO resultData = UserDataDAO .getInstance().searchByID(request.getParameter("id"));
             request.setAttribute("resultData", resultData);
-            
             request.getRequestDispatcher("/resultdetail.jsp").forward(request, response);  
         }catch(Exception e){
             //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー

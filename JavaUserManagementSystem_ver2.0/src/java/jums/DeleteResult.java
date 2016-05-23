@@ -1,7 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author hayashi-s
+ * @author kotaroh
  */
 public class DeleteResult extends HttpServlet {
 
@@ -25,23 +29,19 @@ public class DeleteResult extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeleteResult</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteResult at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+
+            //UserDataDAOに作成したメソッドを使いDBのデータを削除
+       UserDataDAO.getInstance().delete(request.getParameter("id"));    
+       request.getRequestDispatcher("/deleteresult.jsp").forward(request, response);
+
+              }catch(Exception e){
+                   request.setAttribute("error", e.getMessage());
+                   request.getRequestDispatcher("/error.jsp").forward(request, response);    
+               } finally {
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

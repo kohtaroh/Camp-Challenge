@@ -10,6 +10,7 @@ import java.util.Date;
  * @author hayashi-s
  */
 public class UserDataDTO {
+    private int Tatal;
     private int userID;
     private String name;
     private Date birthday;

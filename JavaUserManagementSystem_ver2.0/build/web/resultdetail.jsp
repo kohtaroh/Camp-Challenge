@@ -13,17 +13,21 @@
     </head>
     <body>
         <h1>詳細情報</h1>
+        ID:<%= udd.getUserID()%><br>
         名前:<%= udd.getName()%><br>
         生年月日:<%= udd.getBirthday()%><br>
-        種別:<%= udd.getType()%><br>
+        種別:<%= jh.exTypenum(udd.getType())%><br>
         電話番号:<%= udd.getTell()%><br>
         自己紹介:<%= udd.getComment()%><br>
-        登録日時:<%= udd.getNewDate()%><br>
+        登録日時:<%= udd.getNewDate()%><br><br>
         <form action="Update" method="POST">
-        <input type="submit" name="update" value="変更"style="width:100px">
+        <input type="hidden" name="userID"  value="<%= udd.getUserID()%>">    
+        <input type="submit" name="update" value="変更" style="width:100px">
         </form>
         <form action="Delete" method="POST">
-        <input type="submit" name="delete" value="削除"style="width:100px">
-        </form>
+        <input type="hidden" name="userID"  value="<%= udd.getUserID()%>">    
+        <input type="submit" name="delete" value="削除" style="width:100px">
+        </form><br>
     </body>
+      <%=jh.home()%>
 </html>

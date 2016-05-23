@@ -1,9 +1,12 @@
 <%@page import="jums.JumsHelper"
-        import="jums.UserDataDTO" %>
+        import="jums.UserDataDTO"
+        import="jums.UserDataDAO"
+        import="java.util.ArrayList" %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
-    UserDataDTO udd = (UserDataDTO)request.getAttribute("resultData");
-%>
+    ArrayList udd = (ArrayList)request.getAttribute("resultData");
+    //UserDataDAOでsearch結果を入れたArrayListを呼び出す
+%>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JUMS検索結果画面</title>
     </head>
-    <body>
+     <body>
         <h1>検索結果</h1>
         <table border=1>
             <tr>
@@ -21,12 +24,14 @@
                 <th>登録日時</th>
             </tr>
             <tr>
-                <td><a href="ResultDetail?id=<%= udd.getUserID()%>"><%= udd.getName()%></a></td>
-                <td><%= udd.getBirthday()%></td>
-                <td><%= udd.getType()%></td>
-                <td><%= udd.getNewDate()%></td>
+                <%for(int i=0;i<udd.size();i=i+5){ %>
+                <td><a href="ResultDetail?id=<%= udd.get(i)%>"><%= udd.get(i+1)%></a></td>
+                <td><%= udd.get(i+2)%></td>
+                <td><%= jh.exTypeOb(udd.get(i+3))%></td><%//数字ではなく対応の種別で表示したい%>
+                <td><%= udd.get(i+4)%></td>
             </tr>
-        </table>
+            <% } %>
+        </table><br>
     </body>
     <%=jh.home()%>
 </html>
